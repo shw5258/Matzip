@@ -3,7 +3,11 @@ package com.example.light.matzip.models;
 
 import android.support.annotation.Nullable;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @IgnoreExtraProperties
 public class Restaurant {
@@ -33,5 +37,20 @@ public class Restaurant {
         this.mIntro = intro;
         this.mPhoneNumber = phonenumber;
         this.mPassword = password;
+    }
+    
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name", mName);
+        result.put("owner", mOwner);
+        result.put("address", mAdress);
+        result.put("latitude", mLatitude);
+        result.put("longitude", mLongitude);
+        result.put("intro", mIntro);
+        result.put("phonenumber", mPhoneNumber);
+        result.put("password", mPassword);
+        
+        return result;
     }
 }
